@@ -5,7 +5,7 @@ import os
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Define the quadratic equation
-equation = "5x^2 + 6x + 1 = 0"
+equation = "6x^2 + 6x + 1 = 0"
 
 # First Prompt: Solve the equation
 solve_prompt = f"""
@@ -38,7 +38,7 @@ response = client.chat.completions.create(
         {"role": "system", "content": "You are a helpful assistant that provides step-by-step mathematical solutions."},
         {"role": "user", "content": solve_prompt}
     ],
-    max_tokens=1000,
+    max_tokens=500,
     temperature=0
 )
 
@@ -52,7 +52,7 @@ You are a helpful assistant and an expert in formatting quadratic equation solut
 Answer: x = [value1] or x = [value2]
 
 Check if the following solution follows this format. Do not verify its mathematical correctness.
-If it is in the right format, your output should ONLY contain the solution. Otherwise, if it is incorrectly formatted, you should return -1
+If it is in the right format, your output should ONLY contain the solution. Otherwise, if it is incorrectly formatted, you should return ERROR
 
 Solution to Check:
 {solution}
